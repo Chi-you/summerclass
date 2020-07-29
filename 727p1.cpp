@@ -1,27 +1,47 @@
 #include <iostream>
+#include <string>
 using namespace std;
 struct student{
 	char *name=new char[5]; // if you didn't dynamically allocate memory will cause seg fault
 	int age;
-	char address[20];
-	long int phonenumber;
+	string address;
+	string phonenumber;
 	char gender;
 };
 void print(int);
-int numofstudent(int);
-char * getname(struct student *, int);
-int getage(struct student *, int);
-char * getaddr(struct student *, int);
-long int getphone(struct student *, int);
-char getgender(struct student *, int);
+int numofstudent();
+struct student * getdata(struct student *, int);
 void printinformation(struct student *, int);
-int average_age(struct student *, int);
+void average_age(struct student *, int);
 int main(){
 	int size;
+	size = numofstudent();
+	struct student *student = new struct student [size];
+	student = getdata(student,size);
+	printinformation(student, size);
+	delete [] student;
+}
+void print(int a)
+{
+	if (a == 0)
+		cout<<"For 1st student: \n";
+	else if (a == 1)
+		cout<<"\nFor 2nd student: \n";
+	else if (a == 2)
+		cout<<"\nFor 3rd student: \n";
+	else 
+		cout<<"\nFor "<<a+1<<"th student: \n";
+}
+int numofstudent()
+{
+	int num;
 	cout<<"PLease input the number of students: ";
-	cin>>size;
-	struct student *st = new struct student [size];
-	//struct student st[size];
+	cin>>num;
+	return num;
+}
+struct student * getdata(struct student *st, int size)
+{
+	st = new struct student [size];
 	for(int i = 0; i < size; i++){
 		print(i);
 		cout<<"Enter personal information(name): ";
@@ -36,68 +56,29 @@ int main(){
 		cin>>st[i].gender;
 		cout<<"===========================================================";
 	}
-
-	cout<<"\nThe information of the all the students: ";
-	cout<<"\nThere are "<<numofstudent(size)<<" students.";
-	printinformation(st, size);
-	cout<<"The average age of all students is "<<average_age(st, size);
-	delete []st;
-}
-void print(int a)
-{
-	if (a == 0)
-		cout<<"For 1st student: \n";
-	else if (a == 1)
-		cout<<"\nFor 2nd student: \n";
-	else if (a == 2)
-		cout<<"\nFor 3rd student: \n";
-	else 
-		cout<<"\nFor "<<a+1<<"th student: \n";
-}
-int numofstudent(int size)
-{
-	return size;
-}
-char * getname(struct student *arr, int index)
-{
-	return arr[index].name;
-}
-int getage(struct student *arr, int index)
-{
-	return arr[index].age;
-}
-char* getaddr(struct student *arr, int index)
-{
-	return arr[index].address;
-}
-long int getphone(struct student *arr, int index)
-{
-	return arr[index].phonenumber;
-}
-char getgender(struct student *arr, int index)
-{
-	return arr[index].gender;
+	return st;
 }
 void printinformation(struct student *arr, int size)
 {
+	cout<<"\nThe information of the all the students: ";
+	cout<<"\nThere are "<<size<<" students.";
 	cout<<endl;
 	for(int i = 0; i < size; i++){
 		print(i);
-		cout<<"Name: "<<getname(arr, i);
-		cout<<"\nAge: "<<getage(arr, i);
-		cout<<"\nAddress: "<<getaddr(arr, i);
-		printf("\nPhone number: %010ld", getphone(arr, i));
-		//cout<<"\nPhone number: "<<getphone(arr, i);
-		cout<<"\nGender: "<<((getgender(arr, i) == 'F') ? "Female" : "Male");
-		cout<<"\n==========================\n";
+		cout<<"Name: "<<arr[i].name; 
+		cout<<"\nAge: "<<arr[i].age;
+		cout<<"\nAddress: "<<arr[i].address;
+		cout<<"\nPhone number: "<<arr[i].phonenumber;
+		cout<<"\nGender: "<<((arr[i].gender == 'F') ? "Female" : "Male");
+		cout<<"\n==========================";
 	}
 }
 
-int average_age(struct student *s, int size)
+void average_age(struct student *s, int size)
 {
 	int sum=0;
 	for(int i = 0; i < size; i++){
 		sum += s[i].age;
 	}
-	return (sum/size);
+	cout<<"The average age of all students is "<<(sum/size);
 }
