@@ -14,11 +14,11 @@ struct student * getdata(struct student *, int);
 void printinformation(struct student *, int);
 void average_age(struct student *, int);
 int main(){
-	int size;
-	size = numofstudent();
+	int size = numofstudent();
 	struct student *student = new struct student [size];
 	student = getdata(student,size);
 	printinformation(student, size);
+	average_age(student, size);
 	delete [] student;
 }
 void print(int a)
@@ -80,5 +80,5 @@ void average_age(struct student *s, int size)
 	for(int i = 0; i < size; i++){
 		sum += s[i].age;
 	}
-	cout<<"The average age of all students is "<<(sum/size);
+	cout<<"\nThe average age of all students is "<<(sum/size);
 }
