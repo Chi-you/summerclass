@@ -64,7 +64,7 @@ void printinformation(struct student *arr, int size)
 	cout<<"\nThere are "<<size<<" students.";
 	cout<<endl;
 	for(int i = 0; i < size; i++){
-		print(i);
+		print(i); // test
 		cout<<"Name: "<<arr[i].name; 
 		cout<<"\nAge: "<<arr[i].age;
 		cout<<"\nAddress: "<<arr[i].address;
