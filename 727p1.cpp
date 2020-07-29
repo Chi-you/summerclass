@@ -1,9 +1,9 @@
 #include <iostream>
 using namespace std;
 struct student{
-	char name[5];
+	char *name=new char[5]; // if you didn't dynamically allocate memory will cause seg fault
 	int age;
-	long int address;
+	char address[20];
 	long int phonenumber;
 	char gender;
 };
@@ -11,7 +11,7 @@ void print(int);
 int numofstudent(int);
 char * getname(struct student *, int);
 int getage(struct student *, int);
-long int getaddr(struct student *, int);
+char * getaddr(struct student *, int);
 long int getphone(struct student *, int);
 char getgender(struct student *, int);
 void printinformation(struct student *, int);
@@ -66,7 +66,7 @@ int getage(struct student *arr, int index)
 {
 	return arr[index].age;
 }
-long int getaddr(struct student *arr, int index)
+char* getaddr(struct student *arr, int index)
 {
 	return arr[index].address;
 }
