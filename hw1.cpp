@@ -4,7 +4,7 @@ using namespace std;
 void func(int);
 int main(){
     int input;
-    cout<<"Enter an integer: ";
+    cout<<"Please enter an integer: ";
     cin>>input;
     func(input);
 }
@@ -14,5 +14,5 @@ void func(int a)
     for(int i = 2; i < a; i += 2){
         sum += i;
     }
-    cout<<sum;
+    cout<<"The sum is: "<<sum;
 }
