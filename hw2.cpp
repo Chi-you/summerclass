@@ -14,22 +14,19 @@ void func(int a)
     b = 2*a-3;
     c = 1;
     for(int i = 0; i<a; i++){
-        e = b;
-        d = c;
         if(i>0)
             cout<<"X";
         if(i>1){
-            for(;d>0; d--)
+            for(d = c;d>0; d--)
                 cout<<" ";
         }
         cout<<"X";
-        for(; e>0; e--)
+        for(e = b; e > 0; e--)
             cout<<" ";
         if(i != a-1)
             cout<<"X";
-        d = c;
         if(i>1){
-            for(;d>0; d--)
+            for(d = c;d>0; d--)
                 cout<<" ";
             c++;
         }
