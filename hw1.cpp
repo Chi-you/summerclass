@@ -7,6 +7,7 @@ int main(){
     cout<<"Please enter an integer: ";
     cin>>input;
     func(input);
+    cout<<endl;
     system("pause");
     return 0;
 }
