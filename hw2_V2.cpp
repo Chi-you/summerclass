@@ -7,6 +7,8 @@ int main(){
     cout<<"Please enter an odd integer: ";
     cin>>input;
     func(input);
+    system("pause");
+    return 0;
 }
 void func(int a)
 {
