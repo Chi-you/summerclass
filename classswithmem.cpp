@@ -16,7 +16,6 @@ public:
     ~Vect(); // destructor
     // . . . other public members omitted
 private:
-    int n;
     int* data; // an array holding the vector
     int size; // number of array entries
 };
