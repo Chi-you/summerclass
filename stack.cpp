@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include <string>
 using namespace std;
 
@@ -32,6 +33,7 @@ public:
     const T& top() const;
     void push(const T& e);
     void pop();
+    void reverse(vector<T>& V);
 private:
     T *s;
     int capacity;
@@ -68,6 +70,18 @@ void ArrayStack<T>::pop(){
     if(empty()) 
         throw StackEmpty("Pop from empty stack");
     --t;
+}
+
+template <typename T>
+void ArrayStack<T>::reverse(vector<T>& V) 
+{ // reverse a vector
+    ArrayStack<T> S(V.size());
+    for (int i = 0; i < V.size(); i++) // push elements onto stack
+        S.push(V[i]);
+    for (int i = 0; i < V.size(); i++) { // pop them in reverse order
+        V[i] = S.top(); 
+        S.pop();
+    }
 }
 
 int main(){
