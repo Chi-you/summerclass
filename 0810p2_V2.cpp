@@ -1,10 +1,9 @@
 #include<iostream>
 #include<fstream>
-#include <stdlib.h>
 #include<string>
 using namespace std;
 
-int * array_sum()
+int * array_sum(int &xx)
 {
 	int x, x1, x2;
     string s;
@@ -24,36 +23,60 @@ int * array_sum()
 		cin>>x;
 		arr2[i]=x;
 	}
-    int x3 = (x1>x2) ? x1 : x2;
-    cout<<x3<<endl;
-	int *arr3=new int[x3];
-	for(int i=0;i<x3;i++)
+    xx = (x1>x2) ? x1 : x2;
+    cout<<xx<<endl;
+	int *arr3=new int[xx];
+    // for(int i=0;i<xx;i++)
+	// 	cout<<arr2[i]<<" ";
+    // cout<<endl;
+    // for(int i=0;i<xx;i++)
+	// 	cout<<arr1[i]<<" ";
+    // cout<<endl;    
+	for(int i=0;i<xx;i++)
 		arr3[i]=arr2[i]+arr1[i];	
-	for(int i=0;i<x3;i++)
+	for(int i=0;i<xx;i++)
 		cout<<arr3[i]<<" ";		
     cout<<endl<<sizeof(arr3);
     return arr3;
 }
-void inputfile(int *a)
+string inputfile(int *a, int size)
 {
     fstream dataFILE;
-    char filename[81];
+    string filename;
     cout<<"\nInput the file name: ";  
     getchar();
-    cin.getline(filename, 81);
+    getline(cin, filename);
     dataFILE.open(filename, ios::out);
     
-    int size = sizeof(a)/sizeof(a[0]);
-    for(int i = 0 ; i < size; i++)
-        cout<<a[i]<<"";
     // for(int i = 0 ; i < size; i++)
-    //     dataFILE<<" "<<a[i];
-
+    //     cout<<a[i]<<"";
+    for(int i = 0 ; i < size; i++)
+        dataFILE<<" "<<a[i];
+    dataFILE.close();
+    return filename;
 }
 
+void readfile(string filename){
+    fstream READDATA(filename, ios::in);
+    string str;
+    // while(!READDATA.eof()) { 
+    //     READDATA.get(ch); 
+    //     cout << ch; 
+    // } 
+    while (getline(READDATA , str)){
+        cout<<"The content of the file:";
+        cout << str << endl;
+    }
+    READDATA.close(); 
+
+}
 
 int main()
 {
-    inputfile(array_sum());
+    int x3 = 0;
+    int *a = array_sum(x3);
+    string file = inputfile(a, x3);
+    readfile(file);
 	return 0;
 }
+
