@@ -17,7 +17,6 @@ int main(){
     array2d = AddMatrix(array3d, size, amount);
     PrintData(array3d, array2d, size, amount);
     OutputData(array3d, array2d, size, amount);
-    return 0;
 }
 
 void InputData(int &s, int &a)
@@ -74,7 +73,8 @@ void PrintData(int ***arr3D, int **arr2D, int s, int a)
     }
 }   
 
-void OutputData(int ***arr3D, int **arr2D, int s, int a){
+void OutputData(int ***arr3D, int **arr2D, int s, int a)
+{
     fstream outputfile("AM.txt", ios::out);
     for(int i = 0; i < a; i++){ 
         outputfile<<"\nThe"<< " matrix "<< i+1 <<" is "<<endl<<endl;
