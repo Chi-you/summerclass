@@ -3,7 +3,7 @@
 #include <ctime>
 #include <iomanip>
 using namespace std;
-void InputData(int &, int &);
+void InputData(int *, int *);
 int ***GenData(int, int);
 int **AddMatrix(int ***, int, int);
 void PrintData(int ***, int **, int, int);
@@ -12,17 +12,17 @@ void OutputData(int ***, int **, int, int);
 int main(){
     srand(time(0));
     int size, amount, ***array3d, **array2d; // size: the size of the array    amount: the number of the arrays
-    InputData(size, amount);
+    InputData(&size, &amount);
     array3d = GenData(size, amount);
     array2d = AddMatrix(array3d, size, amount);
     PrintData(array3d, array2d, size, amount);
     OutputData(array3d, array2d, size, amount);
 }
 
-void InputData(int &s, int &a) // get the size and amount from "Input.txt"
+void InputData(int *s, int *a) // get the size and amount from "Input.txt"
 {
     fstream Inputfile("Input.txt", ios::in);
-    Inputfile>>s>>a;  
+    Inputfile>>*s>>*a;  
     Inputfile.close(); 
 }
 
